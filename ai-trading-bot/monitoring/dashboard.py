@@ -17,6 +17,10 @@ import plotly.express as px
 import streamlit as st
 import yaml
 import yfinance as yf
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Proje kökünü path'e ekle
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -25,6 +29,8 @@ from features.technical import TechnicalFeatureGenerator
 from models.predictor import SignalPredictor
 from risk.risk_engine import RiskEngine
 from monitoring.logger import TradeLogger
+from notifications.telegram_bot import TelegramNotifier
+from notifications.formatters import format_order_executed, format_signal_summary
 
 # ── Sayfa Konfigürasyonu ────────────────────────────────────
 st.set_page_config(
@@ -126,6 +132,25 @@ def compute_metrics(trades_df: pd.DataFrame) -> dict:
         "sharpe": round(sharpe, 2),
         "max_dd": round(max_dd, 2),
     }
+
+
+def _send_telegram(message: str):
+    """Telegram bildirim gönderir (requests ile direkt API çağrısı)."""
+    try:
+        import requests
+        token = os.getenv("TELEGRAM_TOKEN", "")
+        chat_id = os.getenv("TELEGRAM_CHAT_ID", "")
+        if not token or token == "YOUR_TELEGRAM_BOT_TOKEN" or not chat_id:
+            return
+        url = f"https://api.telegram.org/bot{token}/sendMessage"
+        payload = {
+            "chat_id": chat_id,
+            "text": message,
+            "parse_mode": "Markdown",
+        }
+        requests.post(url, json=payload, timeout=10)
+    except Exception:
+        pass
 
 
 def fetch_stock_data(ticker: str, days: int = 90) -> pd.DataFrame:
@@ -438,7 +463,17 @@ def render_dashboard():
                         stop_loss=position.get("stop_loss", 0),
                         take_profit=position.get("take_profit", 0),
                     )
-                    executed_orders.append({"ticker": ticker, **order_result})
+                    executed_orders.append({"ticker": ticker, "price": price, "confidence": confidence, **order_result})
+
+                    # Telegram bildirimi — her emir için
+                    if order_result["status"] == "success":
+                        _send_telegram(format_order_executed(
+                            ticker=ticker, side=direction, qty=shares,
+                            price=price, order_id=order_result.get("order_id", "N/A"),
+                            confidence=confidence,
+                            stop_loss=position.get("stop_loss", 0),
+                            take_profit=position.get("take_profit", 0),
+                        ))
 
             progress.empty()
 
@@ -451,6 +486,15 @@ def render_dashboard():
                     else:
                         st.markdown(f'<div class="exec-fail">❌ <strong>{order["ticker"]}</strong>: {order["message"]}</div>', unsafe_allow_html=True)
                 st.divider()
+
+            # Telegram sinyal özeti
+            ok_orders = sum(1 for o in executed_orders if o.get("status") == "success")
+            _send_telegram(format_signal_summary(
+                buy_signals=buy_signals,
+                sell_signals=sell_signals,
+                hold_count=len(hold_signals),
+                executed_count=ok_orders,
+            ))
 
             # AL sinyalleri
             if buy_signals:

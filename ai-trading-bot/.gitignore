@@ -1,50 +1,26 @@
-# ── Python & Build ────────────────────────────────
+# Python
 __pycache__/
-*.py[cod]
-*$py.class
-*.so
-*.egg
-*.egg-info/
-dist/
-build/
-.eggs/
-
-# ── Sanal Ortam ───────────────────────────────────
+*.pyc
+*.pyo
 .venv/
 venv/
 env/
-ENV/
+
+# Secrets
 .env
-.env.local
 
-# ── Gizli Dosyalar (API KEY'LER!) ────────────────
-config/secrets.yaml
-.secrets
-
-# ── Veri & Log ───────────────────────────────────
-data/trades.db
-data/bot.log
-data/cache/
-*.log
-
-# ── Eğitilmiş Modeller ───────────────────────────
-models/saved/*.pkl
-# Sadece .gitkeep tutuluyor
-!models/saved/.gitkeep
-
-# ── macOS ─────────────────────────────────────────
-.DS_Store
-.AppleDouble
-.LSOverride
-
-# ── IDE ───────────────────────────────────────────
+# IDE
 .idea/
 .vscode/
 *.swp
-*.swo
-.cursor/
 
-# ── Test ─────────────────────────────────────────
-.pytest_cache/
-.coverage
-htmlcov/
+# OS
+.DS_Store
+Thumbs.db
+
+# Storage (runtime data)
+storage/*.db
+storage/*.log
+
+# Temp
+*.tmp

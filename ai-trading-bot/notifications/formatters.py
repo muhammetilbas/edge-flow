@@ -106,3 +106,68 @@ def format_system_halted(reason: str, daily_pnl: float) -> str:
         f"⏰ {datetime.now().strftime('%d.%m.%Y %H:%M')}\n\n"
         f"_Manuel müdahale gerekebilir._"
     )
+
+
+def format_order_executed(ticker: str, side: str, qty: int, price: float,
+                          order_id: str, confidence: float,
+                          stop_loss: float = 0, take_profit: float = 0) -> str:
+    """Emir çalıştırma bildirimi formatlar."""
+    emoji = "🟢" if side == "BUY" else "🔴"
+    side_tr = "ALIM" if side == "BUY" else "SATIM"
+    cost = qty * price
+    timestamp = datetime.now().strftime("%d.%m.%Y %H:%M")
+
+    msg = (
+        f"{emoji} *{side_tr} EMRİ ÇALIŞTIRILDI*\n\n"
+        f"📌 *{ticker}*\n"
+        f"• Yön: {side_tr}\n"
+        f"• Adet: {qty}\n"
+        f"• Fiyat: ${price:.2f}\n"
+        f"• Maliyet: ${cost:,.2f}\n"
+        f"• Güven: %{confidence * 100:.0f}\n"
+    )
+
+    if stop_loss > 0:
+        msg += f"• 🛑 Stop Loss: ${stop_loss:.2f}\n"
+    if take_profit > 0:
+        msg += f"• 🎯 Take Profit: ${take_profit:.2f}\n"
+
+    msg += f"\n🆔 Emir: `{order_id[:12]}...`\n"
+    msg += f"⏰ {timestamp}"
+    return msg
+
+
+def format_signal_summary(buy_signals: list, sell_signals: list,
+                          hold_count: int, executed_count: int) -> str:
+    """Toplu sinyal özeti formatlar."""
+    timestamp = datetime.now().strftime("%d.%m.%Y %H:%M")
+    total = len(buy_signals) + len(sell_signals) + hold_count
+
+    msg = f"📊 *SİNYAL ÖZETİ — {timestamp}*\n\n"
+    msg += f"🔍 Analiz: *{total}* hisse\n"
+    msg += f"🟢 AL: *{len(buy_signals)}* | 🔴 SAT: *{len(sell_signals)}* | ⚪ BEKLE: *{hold_count}*\n"
+
+    if executed_count > 0:
+        msg += f"⚡ Otomatik emir: *{executed_count}*\n"
+
+    if buy_signals:
+        msg += "\n*🟢 AL Sinyalleri:*\n"
+        for sig in buy_signals[:8]:
+            t = sig.get("ticker", "?")
+            c = sig.get("confidence", 0)
+            p = sig.get("current_price", 0)
+            msg += f"  • {t}: ${p:.2f} (güven %{c*100:.0f})\n"
+        if len(buy_signals) > 8:
+            msg += f"  _...ve {len(buy_signals) - 8} tane daha_\n"
+
+    if sell_signals:
+        msg += "\n*🔴 SAT Sinyalleri:*\n"
+        for sig in sell_signals[:8]:
+            t = sig.get("ticker", "?")
+            c = sig.get("confidence", 0)
+            p = sig.get("current_price", 0)
+            msg += f"  • {t}: ${p:.2f} (güven %{c*100:.0f})\n"
+        if len(sell_signals) > 8:
+            msg += f"  _...ve {len(sell_signals) - 8} tane daha_\n"
+
+    return msg
