@@ -617,5 +617,32 @@ def _render_signal_card(sig: dict, params: dict):
                 cols[j % 4].metric(key, val)
 
 
+def check_password():
+    """Returns `True` if the user had a correct password."""
+    def password_entered():
+        if st.session_state["password"] == "mami123":
+            st.session_state["password_correct"] = True
+            del st.session_state["password"]
+        else:
+            st.session_state["password_correct"] = False
+
+    if "password_correct" not in st.session_state:
+        st.markdown("<h2 style='text-align: center; margin-top: 100px;'>🔒 AI Trading Bot Giriş</h2>", unsafe_allow_html=True)
+        col1, col2, col3 = st.columns([1, 2, 1])
+        with col2:
+            st.text_input("Lütfen şifrenizi girin", type="password", on_change=password_entered, key="password")
+        return False
+    
+    elif not st.session_state["password_correct"]:
+        st.markdown("<h2 style='text-align: center; margin-top: 100px;'>🔒 AI Trading Bot Giriş</h2>", unsafe_allow_html=True)
+        col1, col2, col3 = st.columns([1, 2, 1])
+        with col2:
+            st.text_input("Lütfen şifrenizi girin", type="password", on_change=password_entered, key="password")
+            st.error("❌ Yanlış şifre")
+        return False
+    else:
+        return True
+
 # ── Çalıştır ─────────────────────────────────────────────────
-render_dashboard()
+if check_password():
+    render_dashboard()
