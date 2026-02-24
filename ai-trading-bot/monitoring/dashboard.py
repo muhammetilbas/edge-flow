@@ -321,7 +321,7 @@ def render_sidebar():
 
         # Eğitilmiş modeller
         st.markdown("### 🧠 Eğitilmiş Modeller")
-        model_dir = Path("models/saved")
+        model_dir = BASE_DIR / "models" / "saved"
         if model_dir.exists():
             models = sorted(model_dir.glob("*.pkl"))
             if models:
