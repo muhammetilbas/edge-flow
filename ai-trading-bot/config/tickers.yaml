@@ -1,0 +1,147 @@
+# ============================================================
+# AI Trading Bot — Takip Edilen Semboller
+# ============================================================
+
+stocks:
+  # ── Teknoloji ──────────────────────────────────────────
+  - { symbol: "AAPL",  name: "Apple",         sector: "tech" }
+  - { symbol: "MSFT",  name: "Microsoft",     sector: "tech" }
+  - { symbol: "GOOGL", name: "Alphabet",      sector: "tech" }
+  - { symbol: "AMZN",  name: "Amazon",        sector: "tech" }
+  - { symbol: "META",  name: "Meta",          sector: "tech" }
+  - { symbol: "NVDA",  name: "NVIDIA",        sector: "tech" }
+  - { symbol: "TSLA",  name: "Tesla",         sector: "tech" }
+  - { symbol: "AMD",   name: "AMD",           sector: "tech" }
+  - { symbol: "INTC",  name: "Intel",         sector: "tech" }
+  - { symbol: "CRM",   name: "Salesforce",    sector: "tech" }
+  - { symbol: "ORCL",  name: "Oracle",        sector: "tech" }
+  - { symbol: "ADBE",  name: "Adobe",         sector: "tech" }
+  - { symbol: "NFLX",  name: "Netflix",       sector: "tech" }
+  - { symbol: "AVGO",  name: "Broadcom",      sector: "tech" }
+  - { symbol: "QCOM",  name: "Qualcomm",      sector: "tech" }
+  - { symbol: "CSCO",  name: "Cisco",         sector: "tech" }
+  - { symbol: "IBM",   name: "IBM",           sector: "tech" }
+  - { symbol: "NOW",   name: "ServiceNow",    sector: "tech" }
+  - { symbol: "PANW",  name: "Palo Alto Ntw", sector: "tech" }
+  - { symbol: "SHOP",  name: "Shopify",       sector: "tech" }
+  - { symbol: "UBER",  name: "Uber",          sector: "tech" }
+  - { symbol: "SNAP",  name: "Snap",          sector: "tech" }
+  - { symbol: "PLTR",  name: "Palantir",      sector: "tech" }
+  - { symbol: "MRVL",  name: "Marvell",       sector: "tech" }
+  - { symbol: "MU",    name: "Micron",        sector: "tech" }
+  - { symbol: "ARM",   name: "ARM Holdings",  sector: "tech" }
+  - { symbol: "SMCI",  name: "Super Micro",   sector: "tech" }
+  - { symbol: "DELL",  name: "Dell",          sector: "tech" }
+  - { symbol: "NET",   name: "Cloudflare",    sector: "tech" }
+  - { symbol: "CRWD",  name: "CrowdStrike",   sector: "tech" }
+  - { symbol: "SNOW",  name: "Snowflake",     sector: "tech" }
+  - { symbol: "DDOG",  name: "Datadog",       sector: "tech" }
+  - { symbol: "ZS",    name: "Zscaler",       sector: "tech" }
+  - { symbol: "ANET",  name: "Arista Ntw",    sector: "tech" }
+  - { symbol: "FTNT",  name: "Fortinet",      sector: "tech" }
+
+  # ── Finans ─────────────────────────────────────────────
+  - { symbol: "JPM",   name: "JPMorgan",        sector: "finance" }
+  - { symbol: "BAC",   name: "Bank of America", sector: "finance" }
+  - { symbol: "GS",    name: "Goldman Sachs",   sector: "finance" }
+  - { symbol: "MS",    name: "Morgan Stanley",  sector: "finance" }
+  - { symbol: "WFC",   name: "Wells Fargo",     sector: "finance" }
+  - { symbol: "C",     name: "Citigroup",       sector: "finance" }
+  - { symbol: "BLK",   name: "BlackRock",       sector: "finance" }
+  - { symbol: "SCHW",  name: "Schwab",          sector: "finance" }
+  - { symbol: "AXP",   name: "American Express", sector: "finance" }
+  - { symbol: "V",     name: "Visa",            sector: "finance" }
+  - { symbol: "MA",    name: "Mastercard",      sector: "finance" }
+  - { symbol: "PYPL",  name: "PayPal",          sector: "finance" }
+  - { symbol: "COIN",  name: "Coinbase",        sector: "finance" }
+
+  # ── Sağlık ─────────────────────────────────────────────
+  - { symbol: "JNJ",   name: "Johnson & Johnson", sector: "health" }
+  - { symbol: "UNH",   name: "UnitedHealth",      sector: "health" }
+  - { symbol: "PFE",   name: "Pfizer",            sector: "health" }
+  - { symbol: "ABBV",  name: "AbbVie",            sector: "health" }
+  - { symbol: "LLY",   name: "Eli Lilly",         sector: "health" }
+  - { symbol: "MRNA",  name: "Moderna",           sector: "health" }
+  - { symbol: "TMO",   name: "Thermo Fisher",     sector: "health" }
+  - { symbol: "ABT",   name: "Abbott Labs",       sector: "health" }
+  - { symbol: "BMY",   name: "Bristol-Myers",     sector: "health" }
+  - { symbol: "AMGN",  name: "Amgen",             sector: "health" }
+  - { symbol: "GILD",  name: "Gilead",            sector: "health" }
+  - { symbol: "ISRG",  name: "Intuitive Surgical", sector: "health" }
+
+  # ── Enerji ─────────────────────────────────────────────
+  - { symbol: "XOM",   name: "Exxon Mobil",    sector: "energy" }
+  - { symbol: "CVX",   name: "Chevron",        sector: "energy" }
+  - { symbol: "COP",   name: "ConocoPhillips", sector: "energy" }
+  - { symbol: "SLB",   name: "Schlumberger",   sector: "energy" }
+  - { symbol: "EOG",   name: "EOG Resources",  sector: "energy" }
+
+  # ── Tüketim / Perakende ────────────────────────────────
+  - { symbol: "KO",    name: "Coca-Cola",   sector: "consumer" }
+  - { symbol: "PEP",   name: "PepsiCo",     sector: "consumer" }
+  - { symbol: "WMT",   name: "Walmart",     sector: "consumer" }
+  - { symbol: "COST",  name: "Costco",      sector: "consumer" }
+  - { symbol: "TGT",   name: "Target",      sector: "consumer" }
+  - { symbol: "HD",    name: "Home Depot",   sector: "consumer" }
+  - { symbol: "LOW",   name: "Lowe's",      sector: "consumer" }
+  - { symbol: "NKE",   name: "Nike",        sector: "consumer" }
+  - { symbol: "MCD",   name: "McDonald's",  sector: "consumer" }
+  - { symbol: "SBUX",  name: "Starbucks",   sector: "consumer" }
+  - { symbol: "DIS",   name: "Disney",      sector: "consumer" }
+  - { symbol: "ORLY",  name: "O'Reilly Auto", sector: "consumer" }
+  - { symbol: "AZO",   name: "AutoZone",    sector: "consumer" }
+  - { symbol: "LULU",  name: "Lululemon",   sector: "consumer" }
+  - { symbol: "CMG",   name: "Chipotle",    sector: "consumer" }
+  - { symbol: "PG",    name: "Procter Gamble", sector: "consumer" }
+  - { symbol: "CL",    name: "Colgate",     sector: "consumer" }
+  - { symbol: "MDLZ",  name: "Mondelez",    sector: "consumer" }
+  - { symbol: "PM",    name: "Philip Morris", sector: "consumer" }
+  - { symbol: "MO",    name: "Altria",      sector: "consumer" }
+  - { symbol: "EL",    name: "Estee Lauder", sector: "consumer" }
+
+  # ── Endüstri / Havacılık / Savunma ─────────────────────
+  - { symbol: "BA",    name: "Boeing",      sector: "industrial" }
+  - { symbol: "CAT",   name: "Caterpillar", sector: "industrial" }
+  - { symbol: "DE",    name: "Deere",       sector: "industrial" }
+  - { symbol: "GE",    name: "GE Aerospace", sector: "industrial" }
+  - { symbol: "HON",   name: "Honeywell",   sector: "industrial" }
+  - { symbol: "RTX",   name: "RTX Corp",    sector: "industrial" }
+  - { symbol: "LMT",   name: "Lockheed Martin", sector: "industrial" }
+  - { symbol: "UPS",   name: "UPS",         sector: "industrial" }
+  - { symbol: "FDX",   name: "FedEx",       sector: "industrial" }
+  - { symbol: "MMM",   name: "3M",          sector: "industrial" }
+  - { symbol: "UNP",   name: "Union Pacific", sector: "industrial" }
+
+  # ── Telekomünikasyon / Medya ───────────────────────────
+  - { symbol: "T",     name: "AT&T",        sector: "telecom" }
+  - { symbol: "VZ",    name: "Verizon",     sector: "telecom" }
+  - { symbol: "TMUS",  name: "T-Mobile",    sector: "telecom" }
+  - { symbol: "CMCSA", name: "Comcast",     sector: "telecom" }
+
+  # ── Gayrimenkul / REIT ─────────────────────────────────
+  - { symbol: "AMT",   name: "American Tower", sector: "reit" }
+  - { symbol: "PLD",   name: "Prologis",    sector: "reit" }
+  - { symbol: "O",     name: "Realty Income", sector: "reit" }
+
+  # ── Diğer Popüler ─────────────────────────────────────
+  - { symbol: "BRK-B", name: "Berkshire Hathaway", sector: "conglomerate" }
+  - { symbol: "NEE",   name: "NextEra Energy", sector: "utilities" }
+  - { symbol: "SO",    name: "Southern Co",  sector: "utilities" }
+  - { symbol: "DUK",   name: "Duke Energy",  sector: "utilities" }
+  - { symbol: "ABNB",  name: "Airbnb",       sector: "travel" }
+  - { symbol: "BKNG",  name: "Booking",      sector: "travel" }
+  - { symbol: "RIVN",  name: "Rivian",       sector: "ev" }
+  - { symbol: "LCID",  name: "Lucid",        sector: "ev" }
+  - { symbol: "F",     name: "Ford",         sector: "auto" }
+  - { symbol: "GM",    name: "General Motors", sector: "auto" }
+  - { symbol: "TM",    name: "Toyota",       sector: "auto" }
+
+crypto:
+  - { symbol: "BTC/USDT",  name: "Bitcoin" }
+  - { symbol: "ETH/USDT",  name: "Ethereum" }
+  - { symbol: "SOL/USDT",  name: "Solana" }
+  - { symbol: "XRP/USDT",  name: "Ripple" }
+  - { symbol: "DOGE/USDT", name: "Dogecoin" }
+  - { symbol: "ADA/USDT",  name: "Cardano" }
+  - { symbol: "AVAX/USDT", name: "Avalanche" }
+  - { symbol: "LINK/USDT", name: "Chainlink" }

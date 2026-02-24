@@ -1,0 +1,50 @@
+# ── Python & Build ────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ── Sanal Ortam ───────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+.env
+.env.local
+
+# ── Gizli Dosyalar (API KEY'LER!) ────────────────
+config/secrets.yaml
+.secrets
+
+# ── Veri & Log ───────────────────────────────────
+data/trades.db
+data/bot.log
+data/cache/
+*.log
+
+# ── Eğitilmiş Modeller ───────────────────────────
+models/saved/*.pkl
+# Sadece .gitkeep tutuluyor
+!models/saved/.gitkeep
+
+# ── macOS ─────────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ── IDE ───────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+*.swo
+.cursor/
+
+# ── Test ─────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/

@@ -1,0 +1,90 @@
+# ============================================================
+# AI Trading Bot — Ana Konfigürasyon Dosyası
+# ============================================================
+# UYARI: Bu dosyayı .gitignore'a ekle! API key'lerini asla
+#        GitHub'a push etme. Gerçek key'leri .env dosyasına koy.
+# ============================================================
+
+# ── Alpaca (ABD Hisse Senedi) ──────────────────────────────
+alpaca:
+  api_key: "PKQQSPBSPQ7CWOVHE375EORZNV"
+  secret_key: "FxdHzU4KQknhhPi1N5krTK4MDcyy6j5dd91y6g9hBGfz"
+  base_url: "https://paper-api.alpaca.markets/v2"
+  paper: true                   # true = paper trading, false = gerçek para
+
+# ── Binance / CCXT (Kripto) ────────────────────────────────
+binance:
+  api_key: "YOUR_BINANCE_API_KEY"
+  secret_key: "YOUR_BINANCE_SECRET_KEY"
+  testnet: true                 # true = testnet, false = gerçek borsa
+
+# ── OpenAI (ChatGPT) ──────────────────────────────────────
+openai:
+  api_key: "YOUR_OPENAI_API_KEY"
+  model: "gpt-4o"               # veya gpt-4o-mini (daha ucuz)
+  max_tokens_sentiment: 300
+  max_tokens_explain: 400
+  max_tokens_brief: 600
+
+# ── NewsAPI ────────────────────────────────────────────────
+news_api:
+  api_key: "YOUR_NEWSAPI_KEY"
+  language: "en"
+  page_size: 10
+
+# ── Reddit (PRAW) ──────────────────────────────────────────
+reddit:
+  client_id: "YOUR_REDDIT_CLIENT_ID"
+  client_secret: "YOUR_REDDIT_CLIENT_SECRET"
+  user_agent: "AITradingBot/1.0"
+
+# ── Telegram ───────────────────────────────────────────────
+telegram:
+  token: "YOUR_TELEGRAM_BOT_TOKEN"
+  chat_id: "YOUR_CHAT_ID"
+
+# ── Trading Parametreleri ──────────────────────────────────
+trading:
+  paper_mode: true
+  max_risk_per_trade: 0.02      # Portföyün %2'si
+  max_open_positions: 5         # Aynı anda max açık pozisyon
+  min_confidence: 0.60          # Sinyal için minimum güven skoru
+  forward_days: 3               # Swing trade hedef: 3 gün
+  target_threshold: 0.02        # %2 hareket hedefi
+  daily_loss_limit: 0.05        # Günlük %5 kayıpda sistemi durgur
+  portfolio_value: 10000.0      # Başlangıç portföy değeri (USD)
+
+# ── Scheduler Ayarları ─────────────────────────────────────
+scheduler:
+  data_update_interval_minutes: 15
+  signal_interval_hours: 1
+  morning_brief_hour: 9
+  morning_brief_minute: 30
+  closing_summary_hour: 16
+  closing_summary_minute: 0
+  timezone: "America/New_York"
+
+# ── Veritabanı ─────────────────────────────────────────────
+database:
+  path: "storage/trades.db"
+
+# ── Feature Engineering ────────────────────────────────────
+features:
+  rsi_lengths: [7, 14]
+  ema_lengths: [9, 21, 50, 200]
+  atr_length: 14
+  bb_length: 20
+  bb_std: 2.0
+  volume_ma_length: 20
+  momentum_periods: [3, 5]
+
+# ── Model ──────────────────────────────────────────────────
+model:
+  n_estimators: 300
+  max_depth: 4
+  learning_rate: 0.05
+  subsample: 0.8
+  colsample_bytree: 0.8
+  random_state: 42
+  cv_splits: 5
+  model_path: "models/saved/"
