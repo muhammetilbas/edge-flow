@@ -40,9 +40,10 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-DB_PATH = "storage/trades.db"
-CONFIG_PATH = "config/config.yaml"
-TICKERS_PATH = "config/tickers.yaml"
+BASE_DIR = Path(__file__).resolve().parent.parent
+DB_PATH = str(BASE_DIR / "storage" / "trades.db")
+CONFIG_PATH = str(BASE_DIR / "config" / "config.yaml")
+TICKERS_PATH = str(BASE_DIR / "config" / "tickers.yaml")
 
 # ── Stiller ─────────────────────────────────────────────────
 st.markdown("""

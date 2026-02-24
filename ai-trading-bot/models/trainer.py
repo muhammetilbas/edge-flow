@@ -34,7 +34,9 @@ from features.technical import FEATURE_COLUMNS
 
 logger = logging.getLogger(__name__)
 
-MODEL_DIR = Path("models/saved")
+# Model klasörünü her yerden çalışacak şekilde ayarla
+MODEL_DIR = Path(__file__).resolve().parent / "saved"
+MODEL_DIR.mkdir(parents=True, exist_ok=True)
 
 # Hedef değişken değerleri
 TARGET_BUY = 1
